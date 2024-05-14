@@ -1,0 +1,92 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    tools:context=".Clientes">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Hola ADMINISTRADOR!"
+        android:textSize="24sp"
+        android:padding="8dp"
+        android:background="@drawable/background_orange_box"
+        android:gravity="center" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <ImageView
+        android:id="@+id/imageViewPerfil"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/pa"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/crearUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:text="NUEVO USUARIO"
+        android:onClick="irAIngresoUsuario"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="376dp"
+        android:layout_height="170dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageViewBuscar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/imageViewModificar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/editar"
+            android:onClick="onImageViewModificarClick" />
+
+
+        <ImageView
+            android:id="@+id/imageViewEliminar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/eliminar" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/logoutButton"
+            android:layout_width="71dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@null"
+            android:onClick="onLogoutClick"
+            android:src="@drawable/cerrar" />
+    </LinearLayout>
+</LinearLayout>
