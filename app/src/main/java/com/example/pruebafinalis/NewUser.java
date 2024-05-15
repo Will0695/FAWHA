@@ -9,6 +9,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class NewUser extends AppCompatActivity {
 
     private EditText usernameEditText, apellidoEditText, nombre_usuarioEditText, correoEditText, passwordEditText, confirpasswordEditText;
@@ -52,14 +63,79 @@ public class NewUser extends AppCompatActivity {
                     return;
                 }
 
-                // Aquí puedes agregar la lógica para guardar el usuario en tu base de datos o realizar cualquier otra acción necesaria
-                // Por ahora, simplemente mostramos un mensaje de éxito
-                Toast.makeText(NewUser.this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show();
+                // Crear un objeto JSON con los datos del nuevo usuario
+                JSONObject newUser = new JSONObject();
+                try {
+                    newUser.put("nombre", nombre);
+                    newUser.put("apellido", apellido);
+                    newUser.put("nombre_usuario", nombreUsuario);
+                    newUser.put("correo", correo);
+                    newUser.put("password", password);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                // Dirigir al usuario a la actividad Usuario
-                Intent intent = new Intent(NewUser.this, Usuario.class);
-                startActivity(intent);
-                finish(); // Opcional: para cerrar la actividad actual después de iniciar la actividad Usuario
+                // Enviar la solicitud HTTP para guardar el nuevo usuario
+                guardarNuevoUsuario(newUser);
+            }
+        });
+    }
+
+    private void guardarNuevoUsuario(JSONObject newUser) {
+        // URL de la API para guardar el nuevo usuario
+        String url = "http://api-production-c57e.up.railway.app/api/register";
+
+        // Crear una instancia de OkHttpClient para enviar la solicitud HTTP
+        OkHttpClient client = new OkHttpClient();
+
+        // Crear el cuerpo de la solicitud HTTP con el objeto JSON
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), newUser.toString());
+
+        // Crear la solicitud HTTP POST
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        // Enviar la solicitud HTTP de forma asíncrona
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                e.printStackTrace();
+                // Manejar el fallo de la solicitud HTTP (por ejemplo, mostrar un mensaje de error)
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(NewUser.this, "Error al conectar con el servidor", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                // Verificar si la solicitud HTTP fue exitosa
+                if (response.isSuccessful()) {
+                    // Manejar la respuesta del servidor (por ejemplo, mostrar un mensaje de éxito)
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(NewUser.this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    // Dirigir al usuario a la actividad Usuario
+                    Intent intent = new Intent(NewUser.this, Usuario.class);
+                    startActivity(intent);
+                    finish(); // Opcional: para cerrar la actividad actual después de iniciar la actividad Usuario
+                } else {
+                    // Manejar la respuesta de error del servidor (por ejemplo, mostrar un mensaje de error)
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(NewUser.this, "Error al guardar el usuario", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }
