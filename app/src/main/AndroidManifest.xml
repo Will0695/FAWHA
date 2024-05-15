@@ -16,22 +16,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <!-- Actividad IngresoUsuario -->
-        <activity android:name=".IngresoUsuario"
-            android:exported="false" />
+        <activity android:name=".Ingresonuevousuario" />
 
+        <activity
+            android:name=".NewUser"
+            android:exported="true" />
+        <activity
+            android:name=".IngresoUsuario"
+            android:exported="false" />
         <activity
             android:name=".Clientes"
             android:exported="false" />
-
-
         <activity
             android:name=".guardar_usuarios"
             android:exported="false" />
         <activity
             android:name=".ingreso"
-            android:exported="false" />
-
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -43,10 +44,10 @@
         </activity>
         <activity
             android:name=".info"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Usuario"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -56,8 +57,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

@@ -90,19 +90,39 @@ public class MainActivity extends AppCompatActivity {
             }
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl, postData, new Response.Listener<JSONObject>() {
-                @Override
+           /*     @Override
                 public void onResponse(JSONObject response) {
                     System.out.println("token12" + response);
                     progressBar.setVisibility(View.GONE); // Ocultar el ProgressBar cuando se recibe la respuesta
-                    setContentView(R.layout.activity_usuario);
+                   // setContentView(R.layout.activity_usuario);
+
                     // Verificar si hay una sesión activa
                     if (sessionManager.getAuthToken() != null) {
                         // Iniciar la actividad Usuario directamente
-                        startActivity(new Intent(MainActivity.this, Usuario.class));
+                      //prueba
+                        //  startActivity(new Intent(MainActivity.this, Usuario.class));
+                        startActivity(new Intent(MainActivity.this, Ingresonuevousuario.class));
+
                         finish();
                     }
 
-                }
+                } */
+           @Override
+           public void onResponse(JSONObject response) {
+               progressBar.setVisibility(View.GONE);
+               try {
+                   String token = response.getString("token");
+                   sessionManager.saveAuthToken(token);
+
+                   startActivity(new Intent(MainActivity.this, Usuario.class));
+                   finish();
+               } catch (JSONException e) {
+                   e.printStackTrace();
+                   errorTextView.setText("Error parsing token");
+                   errorTextView.setVisibility(View.VISIBLE);
+               }
+           }
+
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {

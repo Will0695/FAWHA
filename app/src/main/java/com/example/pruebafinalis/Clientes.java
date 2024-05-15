@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.sql.ClientInfoStatus;
+
 public class Clientes extends AppCompatActivity {
 
     @Override
@@ -15,15 +17,16 @@ public class Clientes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
 
-        Button buttonIrAIngresoUsuario = findViewById(R.id.crearUsuario);
+       /* Button buttonIrAIngresoUsuario = findViewById(R.id.crearUsuario);
         buttonIrAIngresoUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("Clientes", "Botón 'crearUsuario' presionado");
                 // Crear un Intent para iniciar la actividad IngresoUsuario
-                Intent intent = new Intent(Clientes.this, IngresoUsuario.class);
-                startActivity(intent);
+
             }
         });
-    }
+   */ }
+
+
 }

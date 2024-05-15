@@ -1,60 +1,43 @@
 package com.example.pruebafinalis;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 public class Usuario extends AppCompatActivity {
-    private ImageView imageViewModificar, imageViewBuscar, imageViewEliminar;
-    private SessionManager sessionManager;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ingreso_usuario);
+        private static final String PREFS_NAME = "MyPrefsFile";
+        private static final String TOKEN_KEY = "token";
+        private SessionManager sessionManager;
 
-        imageViewModificar = findViewById(R.id.imageViewModificar);
-        imageViewBuscar = findViewById(R.id.imageViewBuscar);
-        imageViewEliminar = findViewById(R.id.imageViewEliminar);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_usuario);
 
-        imageViewModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Iniciar la nueva actividad EditarActivity
-                Intent intent = new Intent(Usuario.this, Clientes.class);
-                startActivity(intent);
+            sessionManager = new SessionManager(this);
+
+            // Inicializar el ImageButton de cerrar sesión
+            ImageButton botonCerrarSesion = findViewById(R.id.CerrarSesion);
+            if (botonCerrarSesion != null) {
+                botonCerrarSesion.setOnClickListener(v -> cerrarSesion());
             }
-        });
+        }
 
-        // Implementar la lógica para los otros ImageView (buscar y eliminar)
+        // Método para cerrar sesión
+        private void cerrarSesion() {
+            sessionManager.clearSession();
 
-        sessionManager = new SessionManager(this);
-
-        // Agregar el botón de cerrar sesión
-        @SuppressLint("WrongViewCast") Button logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLogoutClick(v);
-            }
-        });
-    }
-
-    public void onNuevoBotonClick(View view) {
-        Intent intent = new Intent(this, Clientes.class);
-        startActivity(intent);
-    }
-
-    public void onLogoutClick(View view) {
-        // Cerrar la sesión y volver a la pantalla de inicio de sesión
-        sessionManager.clearSession();
-        startActivity(new Intent(Usuario.this, MainActivity.class));
-        finish();
-    }
+            // Redirigir a la actividad de inicio de sesión
+            Intent intent = new Intent(Usuario.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 }
