@@ -13,4 +13,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/cerrar"
         android:contentDescription="@string/cerrar_sesion" />
+
+    <Button
+        android:id="@+id/crearUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear Usuario" />
 </LinearLayout>
