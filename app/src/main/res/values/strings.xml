@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PruebaFinalIS</string>
+    <string name="menu_button_text">Ir al menú</string>
+    <string-array name="tipo_paquete">
+        <item>simple</item>
+        <item>do</item>
+        <item>triple</item>
+    </string-array>
+</resources>
