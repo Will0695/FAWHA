@@ -61,15 +61,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Seleccionar rol"
-        android:textSize="16sp"
-        android:paddingTop="8dp"
-        android:paddingBottom="4dp"
+        android:textSize="20sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="8dp"
         android:textColor="?android:attr/textColorPrimary" />
 
     <Spinner
         android:id="@+id/roleSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:drawableStart="@drawable/iconoeyes"
+            android:drawableStart="@drawable/ionoeyes"
             android:drawablePadding="8dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -110,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:drawableStart="@drawable/iconoeyes"
+            android:drawableStart="@drawable/ionoeyes"
             android:drawablePadding="8dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -119,12 +119,13 @@
         android:id="@+id/crearButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="48dp"
         android:text="Crear Usuario"
         android:textColor="@android:color/white"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-
-        android:drawablePadding="8dp" />
+        android:padding="16dp"
+        android:drawablePadding="10dp" />
 
 </LinearLayout>
