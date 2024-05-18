@@ -14,6 +14,8 @@ public class Usuario extends AppCompatActivity {
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String TOKEN_KEY = "token";
     private SessionManager sessionManager;
+    // Obtén una referencia al botón ImageButton
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,20 @@ public class Usuario extends AppCompatActivity {
                 // Llamar al método para ir a la actividad NewUser
                 Intent intent = new Intent(Usuario.this, NewUser.class);
                 startActivity(intent);
+            });
+        }
+
+        // Inicializar el ImageButton de visualizar
+        ImageButton visualizarButton = findViewById(R.id.visualizar);
+        if (visualizarButton != null) {
+            visualizarButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Crea un Intent para iniciar la actividad VerUsuarios
+                    Intent intent = new Intent(Usuario.this, verusuarios.class);
+                    // Inicia la actividad VerUsuarios
+                    startActivity(intent);
+                }
             });
         }
     }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +29,7 @@ public class NewUser extends AppCompatActivity {
     private Spinner roleSpinner;
     private Button crearButton;
     private RequestQueue requestQueue;
+    private ProgressBar crearUsuarioProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class NewUser extends AppCompatActivity {
         confirpasswordEditText = findViewById(R.id.confirpasswordEditText);
         roleSpinner = findViewById(R.id.roleSpinner);
         crearButton = findViewById(R.id.crearButton);
+
+
 
         // Inicializar RequestQueue
         requestQueue = Volley.newRequestQueue(this);
@@ -112,9 +117,12 @@ public class NewUser extends AppCompatActivity {
                 error -> {
                     // Manejar la respuesta de error del servidor (por ejemplo, mostrar un mensaje de error)
                     Toast.makeText(NewUser.this, "Error al guardar el usuario", Toast.LENGTH_SHORT).show();
+
                 });
 
         // Agregar la solicitud a la cola de solicitudes
         requestQueue.add(jsonObjectRequest);
     }
+
+
 }
