@@ -2,6 +2,7 @@ package com.example.pruebafinalis;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -98,6 +99,16 @@ public class NewUser extends AppCompatActivity {
             // Enviar la solicitud HTTP para guardar el nuevo usuario
             guardarNuevoUsuario(newUser);
         });
+
+        // Establecer filtros de entrada para aceptar solo letras
+        setInputFilters();
+    }
+
+    // Método para establecer filtros de entrada en los campos de texto
+    private void setInputFilters() {
+        usernameEditText.setFilters(new InputFilter[]{new InputFilterLetters()});
+        apellidoEditText.setFilters(new InputFilter[]{new InputFilterLetters()});
+        nombre_usuarioEditText.setFilters(new InputFilter[]{new InputFilterLetters()});
     }
 
     private void guardarNuevoUsuario(JSONObject newUser) {

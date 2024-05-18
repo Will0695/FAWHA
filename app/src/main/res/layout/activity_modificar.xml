@@ -5,13 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".verusuarios">
-
-    <TextView
-        android:id="@+id/usuariosTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@android:color/black" />
+    tools:context=".modificar">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

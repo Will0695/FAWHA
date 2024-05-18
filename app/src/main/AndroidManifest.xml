@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".modificar"
+            android:exported="false" />
+        <activity
             android:name=".verusuarios"
             android:exported="false" />
         <activity android:name=".Ingresonuevousuario" />
