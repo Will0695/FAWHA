@@ -52,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, Usuario.class));
             finish();
         }
-
+        // añadido eliminar si es necesario
+        else if (sessionManager.getAuthToken() != null){
+            startActivity(new Intent(MainActivity.this, crud_vendedor.class));
+            finish();
+        }
        // showPasswordButton = findViewById(R.id.showPasswordButton);
     }
     public void onShowPasswordClicked(View view) {
@@ -99,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
                     if (sessionManager.getAuthToken() != null) {
                         // Iniciar la actividad Usuario directamente
                         startActivity(new Intent(MainActivity.this, Usuario.class));
+                        finish();
+                    }
+                    // añadido eliminar si es necesario
+                    else if (sessionManager.getAuthToken() != null){
+                        startActivity(new Intent(MainActivity.this, crud_vendedor.class));
                         finish();
                     }
 
