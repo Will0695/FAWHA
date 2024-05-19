@@ -52,7 +52,34 @@ public class Usuario extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            // Establece el OnClickListener para el botón buscar
+            ImageButton buscarButton = findViewById(R.id.buscar);
+                        buscarButton.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                // Crea el Intent para iniciar la actividad Buscar
+                                                                Intent intent = new Intent(Usuario.this, Buscar.class);
+                                                                startActivity(intent);
+
+                                                            }
+                        });
         }
+
+        // Encuentra el botón por su ID
+        ImageButton modificarButton = findViewById(R.id.modificar);
+
+        // Establece el OnClickListener
+        modificarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Crea el Intent para iniciar la actividad Modificar
+                Intent intent = new Intent(Usuario.this, Modificar.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
     // Método para cerrar sesión
