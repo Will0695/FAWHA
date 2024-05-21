@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#33000000"/> <!-- Color semitransparente cuando se presiona -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="#66000000"/> <!-- Color semitransparente por defecto -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+</selector>

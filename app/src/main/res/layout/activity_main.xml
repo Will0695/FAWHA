@@ -1,60 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:paddingTop="16dp"
-    android:paddingBottom="32dp">
+    android:paddingBottom="32dp"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
 
-    <!-- Icono para el nombre de usuario -->
+    <!-- Logo -->
+
+    <ImageView
+        android:id="@+id/encabezado_fhawa"
+        android:layout_width="400dp"
+        android:layout_height="114dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ff" />
+
     <ImageView
         android:id="@+id/imageViewLogo"
         android:layout_width="wrap_content"
-        android:layout_height="320dp"
+        android:layout_height="235dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="3"
+        android:clickable="true"
+        android:src="@drawable/logotipo" />
+
+    <!-- Etiqueta -->
+    <ImageView
+        android:id="@+id/imageSlogan"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:onClick="onLogoClick"
-        android:src="@drawable/logotipo" />
+        android:src="@drawable/s" />
 
-    <EditText
-        android:id="@+id/usernameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="Usuario"
-        android:inputType="text|textNoSuggestions"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:endIconMode="password_toggle">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contraseña"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
+    <!-- Botón "Crear Usuario" -->
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="275dp"
-        android:layout_height="95dp"
-        android:onClick="onLoginClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/button_background"
+        android:drawableRight="@drawable/n"
+        android:gravity="start|center_vertical"
         android:text="LOGIN"
-        android:textSize="30dp" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:onClick="onLoginClicked" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="onRegisterClicked"
+        android:text="CREA UNA CUENTA"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp" />
 
     <!-- ProgressBar para mostrar el progreso -->
     <ProgressBar
@@ -62,7 +77,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone" /> <!-- Invisible por defecto -->
+        android:visibility="gone" />
+
+    <!-- Vista semitransparente como marca de agua -->
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone" />
 
     <!-- Mostrar mensaje de contraseña incorrecta -->
     <TextView
@@ -75,6 +98,27 @@
         android:layout_marginTop="8dp"
         android:layout_gravity="center_horizontal" />
 
+    <!-- Botón "Olvidé mi contraseña" -->
+    <Button
+        android:id="@+id/forgotPasswordButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="¿HAS OLVIDADO TU CONTRASEÑA?"
+        android:textColor="@android:color/widget_edittext_dark"
+        android:onClick="onForgotPasswordClicked" />
 
+    <!-- Términos y condiciones -->
+    <TextView
+        android:id="@+id/labelTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:gravity="start"
+        android:text="Al continuar, aceptas los términos y condiciones"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="15sp"
+        android:textStyle="italic" />
 
 </LinearLayout>

@@ -2,10 +2,7 @@ package com.example.pruebafinalis;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.TextWatcher;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,16 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NewUser extends AppCompatActivity {
+public class NewUserinterno extends AppCompatActivity {
 
     private EditText usernameEditText, apellidoEditText, nombre_usuarioEditText, correoEditText, passwordEditText, confirpasswordEditText;
     private Spinner roleSpinner;
@@ -37,7 +31,7 @@ public class NewUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_user);
+        setContentView(R.layout.activity_new_userinterno);
 
         // Inicializar vistas
         usernameEditText = findViewById(R.id.usernameEditText);
@@ -48,6 +42,8 @@ public class NewUser extends AppCompatActivity {
         confirpasswordEditText = findViewById(R.id.confirpasswordEditText);
         roleSpinner = findViewById(R.id.roleSpinner);
         crearButton = findViewById(R.id.crearButton);
+
+
 
         // Inicializar RequestQueue
         requestQueue = Volley.newRequestQueue(this);
@@ -70,19 +66,13 @@ public class NewUser extends AppCompatActivity {
 
             // Verificar si se han ingresado todos los campos
             if (nombre.isEmpty() || apellido.isEmpty() || nombreUsuario.isEmpty() || correo.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(NewUser.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewUserinterno.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Verificar si las contraseñas coinciden
             if (!password.equals(confirmPassword)) {
-                Toast.makeText(NewUser.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Validar el correo electrónico
-            if (!isValidEmail(correo)) {
-                Toast.makeText(NewUser.this, "Correo electrónico no válido. Debe incluir '@' y uno de los siguientes dominios: gmail.com, hotmail.com, yahoo.com, outlook.com", Toast.LENGTH_LONG).show();
+                Toast.makeText(NewUserinterno.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -98,7 +88,7 @@ public class NewUser extends AppCompatActivity {
                 newUser.put("password_confirmation", confirmPassword);
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(NewUser.this, "Error al crear el nuevo usuario", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewUserinterno.this, "Error al crear el nuevo usuario", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -106,38 +96,8 @@ public class NewUser extends AppCompatActivity {
             guardarNuevoUsuario(newUser);
         });
 
-        // Añadir TextWatcher para validar el correo electrónico
-        correoEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String email = editable.toString();
-                if (!isValidEmail(email)) {
-                    correoEditText.setError("Correo electrónico no válido. Debe incluir '@' y uno de los siguientes dominios: gmail.com, hotmail.com, yahoo.com, outlook.com");
-                }
-            }
-        });
-
         // Establecer filtros de entrada para aceptar solo letras
         setInputFilters();
-    }
-
-    // Método para validar el correo electrónico
-    private boolean isValidEmail(String email) {
-        if (!email.contains("@")) {
-            return false;
-        }
-
-        String domain = email.substring(email.indexOf("@") + 1);
-        return domain.equals("gmail.com") ||
-                domain.equals("hotmail.com") ||
-                domain.equals("yahoo.com") ||
-                domain.equals("outlook.com");
     }
 
     // Método para establecer filtros de entrada en los campos de texto
@@ -155,18 +115,21 @@ public class NewUser extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, newUser,
                 response -> {
                     // Manejar la respuesta del servidor (por ejemplo, mostrar un mensaje de éxito)
-                    Toast.makeText(NewUser.this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewUserinterno.this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show();
                     // Dirigir al usuario a la actividad Usuario
-                    Intent intent = new Intent(NewUser.this, PantallaLogin.class);
+                    Intent intent = new Intent(NewUserinterno.this, Usuario.class);
                     startActivity(intent);
                     finish(); // Opcional: para cerrar la actividad actual después de iniciar la actividad Usuario
                 },
                 error -> {
                     // Manejar la respuesta de error del servidor (por ejemplo, mostrar un mensaje de error)
-                    Toast.makeText(NewUser.this, "Error al guardar el usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewUserinterno.this, "Error al guardar el usuario", Toast.LENGTH_SHORT).show();
+
                 });
 
         // Agregar la solicitud a la cola de solicitudes
         requestQueue.add(jsonObjectRequest);
     }
+
+
 }
